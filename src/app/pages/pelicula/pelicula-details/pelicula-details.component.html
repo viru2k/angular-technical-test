@@ -1,0 +1,146 @@
+<ng-container class="col-sm-12 col-md-10 col-lg-8">
+  <div class="text-center pb-3 pt-2 pb-2">
+    <h2>AGREGAR/EDITAR PELICULA</h2>
+  </div>
+</ng-container>
+
+<div class="d-flex justify-content-center m-1">
+  <form [formGroup]="peliculaForm">
+    <div class="row">
+      <div class="col-6">
+        <!-- Título -->
+        <div class="form-group">
+          <label>Título</label>
+          <input class="form-control col-12" formControlName="titulo" />
+          <div
+            *ngIf="
+              peliculaForm.controls['titulo'].errors?.required &&
+              peliculaForm.controls['titulo'].touched
+            "
+            class="alert alert-warning"
+          >
+            * Este campo es requerido
+          </div>
+        </div>
+        <!-- Fecha de estreno -->
+        <div class="form-group">
+          <label>Fecha de estreno</label>
+          <input class="form-control col-12" formControlName="fechaEstreno" />
+          <div
+            *ngIf="
+              peliculaForm.controls['fechaEstreno'].errors?.required &&
+              peliculaForm.controls['fechaEstreno'].touched
+            "
+            class="alert alert-warning"
+          >
+            * Este campo es requerido
+          </div>
+        </div>
+        <!-- Recaudación -->
+        <div class="form-group">
+          <label>Recaudación</label>
+          <input
+            class="form-control col-12"
+            type="number"
+            formControlName="recaudacion"
+          />
+          <div
+            *ngIf="
+              peliculaForm.controls['recaudacion'].errors?.required &&
+              peliculaForm.controls['recaudacion'].touched
+            "
+            class="alert alert-warning"
+          >
+            * Este campo es requerido
+          </div>
+        </div>
+        <!-- Dirección -->
+        <div class="form-group">
+          <label>Dirección</label>
+          <input class="form-control col-12" formControlName="direccion" />
+          <div
+            *ngIf="
+              peliculaForm.controls['direccion'].errors?.required &&
+              peliculaForm.controls['direccion'].touched
+            "
+            class="alert alert-warning"
+          >
+            * Este campo es requerido
+          </div>
+        </div>
+      </div>
+      <!-- Género -->
+      <div class="col-6">
+        <div class="form-group">
+          <label>Género</label>
+          <input class="form-control col-12" formControlName="genero" />
+          <div
+            *ngIf="
+              peliculaForm.controls['genero'].errors?.required &&
+              peliculaForm.controls['genero'].touched
+            "
+            class="alert alert-warning"
+          >
+            * Este campo es requerido
+          </div>
+        </div>
+        <!-- Productora -->
+        <div class="form-group">
+          <label>Productora</label>
+          <input class="form-control col-12" formControlName="productora" />
+          <div
+            *ngIf="
+              peliculaForm.controls['productora'].errors?.required &&
+              peliculaForm.controls['productora'].touched
+            "
+            class="alert alert-warning"
+          >
+            * Este campo es requerido
+          </div>
+        </div>
+        <!-- Cast principal -->
+        <!--         <div class="form-group">
+          <label>Cast principal</label>
+          <input class="form-control col-12" formControlName="castPrincipal" />
+          <div
+            *ngIf="
+              peliculaForm.controls['castPrincipal'].errors?.required &&
+              peliculaForm.controls['castPrincipal'].touched
+            "
+            class="alert alert-warning"
+          >
+            * Este campo es requerido
+          </div>
+        </div> -->
+        <div>
+          <button class="btn btn-warning btn-block mb-1" (click)="editarCast()">
+            Editar Cast
+          </button>
+
+          <button class="btn btn-info btn-block" (click)="agregarCast()">
+            Agregar Cast
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Action buttons  -->
+    <div class="row col-12 mt-2 d-flex justify-content-center">
+      <button
+        class="btn btn-danger col-md-3 col-lg-3 col-sm-12 m-1"
+        type="submit"
+        (click)="navigateToHome()"
+      >
+        Cancelar
+      </button>
+      <button
+        class="btn btn-info col-md-8 col-lg-8 col-sm-12 m-1"
+        type="submit"
+        [disabled]="!peliculaForm.valid"
+        (click)="guardar()"
+      >
+        Guardar
+      </button>
+    </div>
+  </form>
+</div>

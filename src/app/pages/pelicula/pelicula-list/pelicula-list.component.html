@@ -1,0 +1,24 @@
+<ng-container class="col-sm-12 col-md-10 col-lg-8">
+  <div class="text-center pb-3 pt-2">
+    <h2>LISTADO DE PELICULA</h2>
+  </div>
+</ng-container>
+<ng-container>
+  <div class="pb-3 d-flex justify-content-center">
+    <!-- action button add movie -->
+    <mat-card class="col-sm-12 col-md-10 col-lg-8">
+      <button (click)="agregarPelicula()" class="btn btn-success btn-sm-block">
+        <i class="mr-2"></i>Agregar Película
+      </button>
+    </mat-card>
+  </div>
+</ng-container>
+<!-- List of peliculas -->
+<ng-container *ngIf="peliculasFacade.peliculaList$ | async as peliculas">
+  <ng-container *ngFor="let item of peliculas">
+    <app-pelicula-item
+      class="m-2 d-flex justify-content-center"
+      [itemPelicula]="item"
+    ></app-pelicula-item>
+  </ng-container>
+</ng-container>

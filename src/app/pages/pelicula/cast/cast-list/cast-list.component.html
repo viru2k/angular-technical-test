@@ -1,0 +1,69 @@
+<ng-container class="col-sm-12 col-md-10 col-lg-8">
+  <div class="text-center pb-3 pt-2 pb-2">
+    <h2>GESTION DEL CAST PRINCIPAL</h2>
+  </div>
+</ng-container>
+
+<!-- action button add movie -->
+<div class="d-flex justify-content-center m-1">
+  <mat-card class="col-sm-12 col-md-10 col-lg-8">
+    <!-- List of existing cast -->
+    <ng-container
+      *ngIf="peliculasFacade.castPrincipal$ | async as castPrincipal"
+    >
+      <mat-card-content>
+        <mat-list role="list">
+          <mat-selection-list #cast [multiple]="false">
+            <mat-list-option
+              *ngFor="let item of castPrincipal"
+              [value]="item"
+              (click)="setCurrentActor(item)"
+            >
+              {{ item.apellidoNombre }}
+            </mat-list-option>
+          </mat-selection-list>
+        </mat-list>
+      </mat-card-content>
+    </ng-container>
+    <!-- List of all actors -->
+    <ng-container *ngIf="!(peliculasFacade.castPrincipal$ | async)">
+      <ng-container *ngIf="peliculasFacade.personas$ | async as persona">
+        <mat-card-content>
+          <mat-list role="list">
+            <mat-selection-list #cast [multiple]="false">
+              <mat-list-option
+                *ngFor="let item of persona"
+                [value]="item"
+                (click)="setCurrentActor(item)"
+              >
+                {{ item.apellidoNombre }}
+              </mat-list-option>
+            </mat-selection-list>
+          </mat-list>
+        </mat-card-content>
+      </ng-container>
+    </ng-container>
+    <mat-divider></mat-divider>
+    <mat-card-actions>
+      <ng-container class="d-flex justify-content-center m-1">
+        <button
+          *ngIf="peliculasFacade.castPrincipal$ | async"
+          class="btn btn-danger col-4 m-1"
+          (click)="removeActor()"
+        >
+          Quitar
+        </button>
+        <button
+          *ngIf="!(peliculasFacade.castPrincipal$ | async)"
+          class="btn btn-success col-4 m-1"
+          (click)="agregarActor()"
+        >
+          Agregar
+        </button>
+        <button class="btn btn-info col-4 m-1" (click)="navigateToHome()">
+          Inicio
+        </button>
+      </ng-container>
+    </mat-card-actions>
+  </mat-card>
+</div>
